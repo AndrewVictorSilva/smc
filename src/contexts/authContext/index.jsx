@@ -8,7 +8,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 const AuthContext = createContext();
 
-export function useAuth() {
+export default function useAuth() {
   return useContext(AuthContext)
 }
 
