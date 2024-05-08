@@ -10,15 +10,9 @@ export function Home() {
   // Now you can conditionally render based on the email check
   return (
     <>
-      <div className="text-2xl font-bold pt-14 bg-gradient-to-r">
+      <div className=" text-2xl font-bold bg-gradient-to-r relative w-full h-full py-20 min-h-screen">
         {/* Conditionally render based on the email check */}
-        {emailContainsAtos ? (
-          <>
-            <Grid />
-          </>
-        ) : (
-          <p>Email does not contain '@atos'.</p>
-        )}
+        {emailContainsAtos ? <Grid /> : <p>Email does not contain '@atos'.</p>}
       </div>
     </>
   );
