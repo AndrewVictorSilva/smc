@@ -34,7 +34,7 @@ export function Login() {
         <div>
             {userLoggedIn && (<Navigate to={'/home'} replace={true} />)}
 
-            <main className="w-full h-screen flex self-center place-content-center place-items-center bg-gradient-to-r from-sky-500 to-indigo-500">
+            <main className="w-full h-screen flex self-center place-content-center place-items-center bg-abstract bg-cover">
                 <div className="w-96 text-gray-600 space-y-5 p-4 shadow-xl border rounded-xl bg-white">
                     <div className="text-center">
                         <div className="mt-2">
@@ -61,7 +61,7 @@ export function Login() {
 
                         <div>
                             <label className="text-sm text-gray-600 font-bold">
-                                Password
+                                Senha
                             </label>
                             <input
                                 type="password"
@@ -81,7 +81,7 @@ export function Login() {
                             disabled={isSigningIn}
                             className={`w-full px-4 py-2 text-white font-medium rounded-lg ${isSigningIn ? 'bg-gray-300 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700 hover:shadow-xl transition duration-300'}`}
                         >
-                            {isSigningIn ? 'Signing In...' : 'Sign In'}
+                            {isSigningIn ? 'Entrando...' : 'Entrar'}
                         </button>
                     </form>
                     {/* <p className="text-center text-sm">Don't have an account? <Link to={'/register'} className="hover:underline font-bold">Sign up</Link></p>

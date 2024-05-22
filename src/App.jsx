@@ -31,9 +31,10 @@ function App() {
 
   return (
     <AuthProvider>
-      <Header />
+      
       {authenticated.user ? (
         <main className=" pt-20 mx-auto w-full -m-24 min-h-screen">
+          <Header />
           <Home />
         </main>
       ) : authenticated.user === false ? (
