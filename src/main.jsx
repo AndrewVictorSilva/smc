@@ -5,13 +5,6 @@ import {  RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Login } from "./components/auth/login/index.jsx";
 import { AuthProvider } from "./contexts/authContext/index.jsx";
 
-
-// ReactDOM.createRoot(document.getElementById('root')).render(
-//   <Router>
-//     <App />
-//   </Router>,
-// )
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,7 +19,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "login",
+    path: "/login",
     element: <Login />
   },
 ]);
