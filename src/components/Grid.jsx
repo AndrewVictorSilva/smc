@@ -42,7 +42,7 @@ export function Grid() {
 
   return (
     <div className="w-full h-full flex justify-center">
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-12  ">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-12 [&>*]:p-1 ">
         {matchingGridItems.length > 0 ? (
           matchingGridItems.map(item => (
             <GridItem

@@ -5,8 +5,6 @@ import { Login } from "./components/auth/login";
 import { Header } from "./components/header";
 import { Home } from "./components/home";
 
-import { AuthProvider } from "./contexts/authContext";
-
 //import { useRoutes } from "react-router-dom";
 import { auth } from "./firebase/firebase";
 
@@ -30,8 +28,7 @@ function App() {
   }
 
   return (
-    <AuthProvider>
-      
+    <>
       {authenticated.user ? (
         <main className=" pt-20 mx-auto w-full -m-24 min-h-screen">
           <Header />
@@ -42,7 +39,7 @@ function App() {
       ) : (
         <Login />
       )}
-    </AuthProvider>
+    </>
   );
 }
 
