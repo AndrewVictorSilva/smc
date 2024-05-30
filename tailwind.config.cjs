@@ -6,7 +6,8 @@ module.exports = {
     extend: {
       backgroundImage: {
         'data-bg': "url('/data-bg.jpeg')",
-        'abstract':"url('/abstract.jpeg')"
+        'abstract':"url('/abstract.jpeg')",
+        'smc':"url('/login-bg.png')"
       }
     },
   },

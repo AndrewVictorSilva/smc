@@ -1,64 +1,63 @@
+import { useState, useEffect } from "react";
 import useAuth from "../contexts/authContext";
 import { GridItem } from "./GridItem";
-
-const gridItems = [
-  {
-    title: "FMI",
-    customer: "FMI",
-    src: "https://app.powerbi.com/view?r=eyJrIjoiODY3MmNkM2UtNjNmNC00OWZkLWEwNmYtOTUyMWVjZDJjYTc3IiwidCI6IjMzNDQwZmM2LWI3YzctNDEyYy1iYjczLTBlNzBiMDE5OGQ1YSIsImMiOjh9",
-    allowFullScreen: true,
-    width: "750",
-    height: "500"
-  },
-  {
-    title: "Grupo Marista - Dashboard de Problemas e Ações",
-    customer: "Marista",
-    src: "https://app.powerbi.com/view?r=eyJrIjoiNjViMjQxYWUtNWExMS00ZTg1LWJiOGYtZDAwMjYxMzc3MGRjIiwidCI6IjMzNDQwZmM2LWI3YzctNDEyYy1iYjczLTBlNzBiMDE5OGQ1YSIsImMiOjh9",
-    allowFullScreen: true,
-    width: "750",
-    height: "500"
-  },
-  {
-    title: "Toyota_Backlog",
-    customer: "Toyota",
-    src: "https://app.powerbi.com/view?r=eyJrIjoiNTE0NzEwZTEtMTUzMy00NzI5LThjYWItMjdhODI5NjA5NGU1IiwidCI6IjMzNDQwZmM2LWI3YzctNDEyYy1iYjczLTBlNzBiMDE5OGQ1YSIsImMiOjh9",
-    allowFullScreen: true,
-    width: "750",
-    height: "500"
-  }
-];
+import { db, collection, getDocs } from "../firebase/firebase";
 
 export function Grid() {
   const { currentUser } = useAuth();
+  const [gridItems, setGridItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const emailDomain = currentUser.email.split('@')[1];
-  const firstWordAfterAt = emailDomain.split('.')[0];
+  useEffect(() => {
+    const fetchGridItems = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "forms"));
+        const items = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        console.log("Firestore response:", items);
+        setGridItems(items);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching grid items:", error);
+        setLoading(false);
+      }
+    };
 
-  // Determine if we should render all grid items
-  const renderAllItems = firstWordAfterAt.toLowerCase() === 'atos';
+    fetchGridItems();
+  }, []);
 
-  // Filter grid items based on the first word after the '@' if not 'atos'
-  const matchingGridItems = renderAllItems ? gridItems : gridItems.filter(item => item.customer.toLowerCase() === firstWordAfterAt.toLowerCase());
+  const emailDomain = currentUser.email.split("@")[1].split(".")[0].toLowerCase();
+  const renderAllItems = emailDomain === "atos";
+
+  const matchingGridItems = renderAllItems 
+    ? gridItems 
+    : gridItems.filter((item) => item.customer.toLowerCase() === emailDomain);
 
   return (
     <div className="w-full h-full flex justify-center">
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-12 [&>*]:p-1 ">
-        {matchingGridItems.length > 0 ? (
-          matchingGridItems.map(item => (
-            <GridItem
-              key={item.title}
-              title={item.title}
-              customer={item.customer}
-              src={item.src}
-              allowFullScreen={item.allowFullScreen}
-              width={item.width}
-              height={item.height}
-            />
-          ))
-        ) : (
-          <p>Email domain does not match any customer.</p>
-        )}
-      </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-12 [&>*]:p-1">
+          {matchingGridItems.length > 0 ? (
+            matchingGridItems.map((item) => (
+              <GridItem
+                key={item.id}
+                title={item.title}
+                customer={item.customer}
+                src={item.src}
+                allowFullScreen={item.allowFullScreen}
+                width={item.width}
+                height={item.height}
+              />
+            ))
+          ) : (
+            <p>Email domain does not match any customer.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }

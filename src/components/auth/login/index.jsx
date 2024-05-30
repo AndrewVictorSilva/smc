@@ -53,7 +53,7 @@ export function Login() {
     <div>
       {userLoggedIn && <Navigate to={"/home"} replace={true} />}
 
-      <main className="w-full h-screen flex self-center place-content-center place-items-center bg-abstract bg-cover">
+      <main className="w-full h-screen flex self-center place-content-center place-items-center bg-smc bg-cover">
         <div className="w-96 text-gray-600 space-y-5 p-4 shadow-xl border rounded-xl bg-white">
           <div className="text-center">
             <div className="mt-2">
@@ -103,7 +103,7 @@ export function Login() {
               className={`w-full px-4 py-2 text-white font-medium rounded-lg ${
                 isSigningIn
                   ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-indigo-600 hover:bg-indigo-700 hover:shadow-xl transition duration-300"
+                  : "bg-sky-600 hover:bg-sky-700 hover:shadow-xl transition duration-300"
               }`}
             >
               {isSigningIn ? "Entrando..." : "Entrar"}
