@@ -53,18 +53,31 @@ export function Login() {
     <div>
       {userLoggedIn && <Navigate to={"/home"} replace={true} />}
 
-      <main className="w-full h-screen flex self-center place-content-center place-items-center bg-smc bg-cover">
-        <div className="w-96 text-gray-600 space-y-5 p-4 shadow-xl border rounded-xl bg-white">
+      <main className="w-full h-screen bg-atos-dark-blue">
+        <span className="m-3 text-7xl text-white font-raleway">Customer Governance Portal</span>
+
+        <div className="absolute bottom-0 left-0">
+          <img src="/elipse-left.svg" alt="Ellipse 1" className=" h-96" />
+        </div>
+
+        <div className="absolute top-0 right-0">
+          <img src="/elipse-right.svg" alt="Ellipse 2" className="h-96" />
+          <div className="absolute top-4 right-4">
+            <img src="/logo.png" alt="" />
+          </div>
+        </div>
+
+        <div className="my-52 mx-auto self-center w-96 text-gray-600 space-y-5 p-4 shadow-xl border rounded-xl bg-white" alt="form-box">
           <div className="text-center">
             <div className="mt-2">
-              <h3 className="text-gray-800 text-xl font-semibold sm:text-2xl">
+              <h3 className="text-gray-800 text-xl font-semibold font-raleway sm:text-2xl">
                 Bem vindo(a)
               </h3>
             </div>
           </div>
           <form onSubmit={onSubmit} className="space-y-5">
             <div>
-              <label className="text-sm text-gray-600 font-bold">Email</label>
+              <label className="text-sm text-gray-600 font-bold"></label>
               <input
                 type="email"
                 autoComplete="email"
@@ -74,11 +87,12 @@ export function Login() {
                   setEmail(e.target.value);
                 }}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg transition duration-300"
+                placeholder="Email"
               />
             </div>
 
             <div>
-              <label className="text-sm text-gray-600 font-bold">Senha</label>
+              <label className="text-sm text-gray-600 font-bold"></label>
               <input
                 type="password"
                 autoComplete="current-password"
@@ -88,6 +102,7 @@ export function Login() {
                   setPassword(e.target.value);
                 }}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg transition duration-300"
+                placeholder="Senha"
               />
             </div>
 
@@ -97,17 +112,21 @@ export function Login() {
               </div>
             )}
 
+            <div className="font-raleway flex items-center justify-evenly">
+              <a href="#" className="line-through cursor-not-allowed" >Reset Senha</a>
             <button
               type="submit"
               disabled={isSigningIn}
-              className={`w-full px-4 py-2 text-white font-medium rounded-lg ${
+              className={` px-4 py-2 text-white font-medium rounded-lg ${
                 isSigningIn
                   ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-sky-600 hover:bg-sky-700 hover:shadow-xl transition duration-300"
+                  : "bg-atos-dark-blue hover:bg-atos-medium-blue hover:shadow-xl transition duration-300"
               }`}
             >
               {isSigningIn ? "Entrando..." : "Entrar"}
             </button>
+            </div>
+            
           </form>
           {/* <p className="text-center text-sm">Don't have an account? <Link to={'/register'} className="hover:underline font-bold">Sign up</Link></p>
                     <div className='flex flex-row text-center w-full'>

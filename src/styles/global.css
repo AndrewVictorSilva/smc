@@ -7,3 +7,9 @@
     flex-direction: column;
   }
 }
+
+@layer base {
+  body {
+    @apply font-sans; /* Apply the default sans font (Raleway) to the body */
+  }
+}
