@@ -53,14 +53,14 @@ export function Login() {
     <div>
       {userLoggedIn && <Navigate to={"/home"} replace={true} />}
 
-      <main className="w-full h-screen bg-atos-dark-blue">
-        <span className="m-3 text-7xl text-white font-raleway">Customer Governance Portal</span>
+      <main className="w-full h-screen bg-atos-dark-blue sm:bg-atos-dark-blue md:bg-atos-dark-blue lg:bg-atos-dark-blue xl:bg-atos-dark-blue">
+        <span className="m-3 text-7xl  text-atos-dark-blue sm:text-atos-dark-blue lg:text-white ">Customer Governance Portal</span>
 
-        <div className="absolute bottom-0 left-0">
+        <div className="absolute bottom-0 left-0 hidden sm:block">
           <img src="/elipse-left.svg" alt="Ellipse 1" className=" h-96" />
         </div>
 
-        <div className="absolute top-0 right-0">
+        <div className="absolute top-0 right-0 hidden sm:block">
           <img src="/elipse-right.svg" alt="Ellipse 2" className="h-96" />
           <div className="absolute top-4 right-4">
             <img src="/logo.png" alt="" />
