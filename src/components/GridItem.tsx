@@ -12,6 +12,7 @@ export interface GridItemProps {
 export function GridItem(props: GridItemProps) {
   return (
     <div>
+      <div>{props.title}</div>
       <iframe
         title={props.title}
         src={props.src}
