@@ -54,7 +54,7 @@ export function Login() {
       {userLoggedIn && <Navigate to={"/home"} replace={true} />}
 
       <main className="w-full h-screen bg-atos-dark-blue sm:bg-atos-dark-blue md:bg-atos-dark-blue lg:bg-atos-dark-blue xl:bg-atos-dark-blue">
-        <span className="m-3 text-7xl  text-atos-dark-blue sm:text-atos-dark-blue lg:text-white ">Customer Governance Portal</span>
+        <span className="m-3 text-7xl  text-atos-dark-blue sm:text-atos-dark-blue lg:text-white">Customer Governance Portal</span>
 
         <div className="absolute bottom-0 left-0 hidden sm:block">
           <img src="/elipse-left.svg" alt="Ellipse 1" className=" h-96" />

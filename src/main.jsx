@@ -1,11 +1,12 @@
 import "./styles/global.css";
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import {  RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Login } from "./components/auth/login/index.jsx";
 import { AuthProvider } from "./contexts/authContext/index.jsx";
 import { AdminDashboard } from "./components/AdminDashboard.jsx";
 import { Register } from "./components/auth/register/index.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,11 +27,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin/dashboard",
-    element: <AdminDashboard />
+    element: <ProtectedRoute element={<AdminDashboard />} />
   },
   {
     path: "/admin/users",
-    element: <Register />
+    element: <ProtectedRoute element={<Register />} />
   },
 ]);
 
