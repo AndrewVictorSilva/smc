@@ -16,9 +16,9 @@ export function GridItem(props: GridItemProps) {
       <iframe
         title={props.title}
         src={props.src}
-        width='750'
-        height='500'
-        allowFullScreen='true'
+        width='1200'
+        height='600'
+        allowFullScreen={true}
       ></iframe>
     </div>
   );

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { auth } from "./firebase";
+import { auth, db } from "./firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -9,9 +9,33 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
+import { doc, setDoc } from 'firebase/firestore';
 
-export const doCreateUserWithEmailAndPassword = async (email, password) => {
-  return createUserWithEmailAndPassword(auth, email, password);
+export const doCreateUserWithEmailAndPassword = async (email, password, role, company) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // Save role in Firestore
+    await setDoc(doc(db, 'users', user.uid), {
+      email: user.email,
+      role: role,
+      company: company
+    });
+
+    return user;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const updateUserData = async (uid, data) => {
+  try {
+      await setDoc(doc(db, 'users', uid), data, { merge: true });
+      console.log('User data updated successfully');
+  } catch (error) {
+      console.error('Error updating user data:', error.message);
+  }
 };
 
 export const doSignInWithEmailAndPassword = (email, password) => {
