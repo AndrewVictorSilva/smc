@@ -10,6 +10,7 @@ import { Company } from "./components/Company.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 import {LoginTest} from './components/LoginTest.jsx'
+import {HomePage} from './components/HomeTest.jsx'
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/login-test",
     element: <ProtectedRoute element={<LoginTest />} />
+  },
+  {
+    path: "/home-test",
+    element: <ProtectedRoute element={<HomePage />} />
   },
 ]);
 

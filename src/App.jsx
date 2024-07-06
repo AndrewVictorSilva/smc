@@ -31,7 +31,7 @@ function App() {
     <>
       {authenticated.user ? (
         <main className=" pt-20 mx-auto w-full -m-24 min-h-screen">
-          <Header />
+          {/* <Header /> */}
           <Home />
         </main>
       ) : authenticated.user === false ? (

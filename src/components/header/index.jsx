@@ -12,7 +12,6 @@ export function Header() {
       {userLoggedIn ? (
         <>
           <div></div>
-          <div></div>
           <div className="text-4xl font-raleway">Customer Governance Portal</div>
 
           <div className="flex items-center">
