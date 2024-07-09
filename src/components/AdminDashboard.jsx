@@ -10,12 +10,14 @@ import {
 } from "../firebase/firebase";
 
 export function AdminDashboard() {
-  const [form, setForm] = useState({ title: "", customer: "", src: "" });
+  const [form, setForm] = useState({ title: "", customer: "", src: "", reportType: "" });
   const [documents, setDocuments] = useState([]);
+  const [companies, setCompanies] = useState([]);
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
     fetchDocuments();
+    fetchCompanies();
   }, []);
 
   const handleInputChange = (e) => {
@@ -32,6 +34,15 @@ export function AdminDashboard() {
     setDocuments(docs);
   };
 
+  const fetchCompanies = async () => {
+    const querySnapshot = await getDocs(collection(db, "companies"));
+    const companiesList = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      name: doc.data().name,
+    }));
+    setCompanies(companiesList);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (editingId) {
@@ -40,7 +51,7 @@ export function AdminDashboard() {
     } else {
       await addDoc(collection(db, "forms"), form);
     }
-    setForm({ title: "", customer: "", src: "" });
+    setForm({ title: "", customer: "", src: "", reportType: "" });
     fetchDocuments();
   };
 
@@ -49,6 +60,7 @@ export function AdminDashboard() {
       title: document.title,
       customer: document.customer,
       src: document.src,
+      reportType: document.reportType || "",
     });
     setEditingId(document.id);
   };
@@ -70,7 +82,7 @@ export function AdminDashboard() {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="title"
           >
-            Title
+            Título
           </label>
           <input
             id="title"
@@ -79,7 +91,7 @@ export function AdminDashboard() {
             value={form.title}
             onChange={handleInputChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Title"
+            placeholder="Título"
             required
           />
         </div>
@@ -88,25 +100,30 @@ export function AdminDashboard() {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="customer"
           >
-            Customer
+            Cliente
           </label>
-          <input
+          <select
             id="customer"
-            type="text"
             name="customer"
             value={form.customer}
             onChange={handleInputChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Customer"
             required
-          />
+          >
+            <option value="">Selecione um Cliente</option>
+            {companies.map((company) => (
+              <option key={company.id} value={company.name}>
+                {company.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="src"
           >
-            Source
+            Source Link
           </label>
           <input
             id="src"
@@ -115,9 +132,30 @@ export function AdminDashboard() {
             value={form.src}
             onChange={handleInputChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Source"
+            placeholder="Link"
             required
           />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="reportType"
+          >
+            Tipo de Relatório
+          </label>
+          <select
+            id="reportType"
+            name="reportType"
+            value={form.reportType}
+            onChange={handleInputChange}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          >
+            <option value="">Escolha a recorrência</option>
+            <option value="Diário">Diário</option>
+            <option value="Semanal">Semanal</option>
+            <option value="Mensal">Mensal</option>
+          </select>
         </div>
         <div className="flex items-center justify-between">
           <button
@@ -140,6 +178,9 @@ export function AdminDashboard() {
                 </p>
                 <p className="text-gray-800">
                   <strong>Customer:</strong> {document.customer}
+                </p>
+                <p className="text-gray-800">
+                  <strong>Report Type:</strong> {document.reportType}
                 </p>
                 <p className="text-gray-800">
                   <strong>Source:</strong>{" "}

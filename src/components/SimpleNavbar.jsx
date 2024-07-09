@@ -33,19 +33,12 @@ export function SimpleNavbar() {
           <Typography
             as="a"
             href="#"
-            className="absolute left-1/2 transform -translate-x-1/2 py-1.5 font-raleway text-3xl no-underline"
+            className="absolute left-1/2 transform -translate-x-1/2 py-1.5 font-raleway text-lg md:text-xl lg:text-2xl xl:text-4xl whitespace-nowrap"
           >
             Customer Governance Portal
           </Typography>
           <div className="ml-auto flex items-center gap-4">
             <div className="flex items-center gap-x-1">
-              {/* <Button
-                variant="text"
-                size="sm"
-                className="hidden lg:inline-block"
-              >
-                <span>Log In</span>
-              </Button> */}
               <Button
                 variant="gradient"
                 size="sm"
@@ -94,7 +87,6 @@ export function SimpleNavbar() {
           </div>
         </div>
         <MobileNav open={openNav}>
-          {navList}
           <div className="flex items-center gap-x-1">
             <Button fullWidth variant="text" size="sm" className="">
               <span>Log In</span>
