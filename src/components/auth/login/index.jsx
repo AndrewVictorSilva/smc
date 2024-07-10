@@ -53,7 +53,7 @@ export function Login() {
     <div>
       {userLoggedIn && <Navigate to={"/home"} replace={true} />}
 
-      <main className="w-full h-screen bg-atos-dark-blue sm:bg-atos-dark-blue md:bg-atos-dark-blue lg:bg-atos-dark-blue xl:bg-atos-dark-blue">
+      <main className="w-full h-screen bg-[#00005c] sm:bg-[#00005c] md:bg-[#00005c] lg:bg-[#00005c] xl:bg-[#00005c]">
         <span className="m-3 text-7xl  text-atos-dark-blue sm:text-atos-dark-blue lg:text-white">Customer Governance Portal</span>
 
         <div className="absolute bottom-0 left-0 hidden sm:block">
@@ -120,7 +120,7 @@ export function Login() {
               className={` px-4 py-2 text-white font-medium rounded-lg ${
                 isSigningIn
                   ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-atos-dark-blue hover:bg-atos-medium-blue hover:shadow-xl transition duration-300"
+                  : "bg-[#00005c] hover:bg-atos-medium-blue hover:shadow-xl transition duration-300"
               }`}
             >
               {isSigningIn ? "Entrando..." : "Entrar"}
