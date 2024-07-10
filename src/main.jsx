@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 import {LoginTest} from './components/LoginTest.jsx'
 import {HomePage} from './components/HomeTest.jsx'
+import { Admin } from "./components/Admin/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/home-test",
     element: <ProtectedRoute element={<HomePage />} />
+  },
+  {
+    path: "/admin",
+    element: <ProtectedRoute element={<Admin />} />
   },
 ]);
 
