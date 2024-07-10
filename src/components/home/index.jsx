@@ -25,7 +25,9 @@ export function Home() {
   return (
     <div className="flex gap-5 mt-8">
       <Sidebar onSelectChart={handleSelectChart} setInitialChartUrl={setSelectedChartUrl} />
-      <SimpleNavbar chartUrl={selectedChartUrl} userEmail={userEmail} />
+      <div className="flex-grow">
+        <SimpleNavbar chartUrl={selectedChartUrl} userEmail={userEmail} />
+      </div>
     </div>
   );
 }
