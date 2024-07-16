@@ -1,5 +1,14 @@
 import { db } from './firebase';
-import { doc, setDoc, getDoc, updateDoc, deleteDoc, collection, getDocs } from 'firebase/firestore';
+import {
+    doc,
+    setDoc,
+    getDoc,
+    updateDoc,
+    deleteDoc,
+    collection,
+    getDocs
+}
+    from 'firebase/firestore';
 
 // Create a company
 export const createCompany = async (name, description) => {

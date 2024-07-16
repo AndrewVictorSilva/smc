@@ -10,9 +10,14 @@ import {
 } from "@material-tailwind/react";
 import { ProfileMenu } from "./ProfileMenu"; // Adjust the import path based on your project structure
 import { doSignOut } from "../firebase/auth";
+import useAuth from "../contexts/authContext";
+
 
 export function SimpleNavbar({ chartUrl, userEmail }) {
   const [openNav, setOpenNav] = React.useState(false);
+  const { currentUser } = useAuth();
+
+
 
   React.useEffect(() => {
     window.addEventListener(
@@ -45,7 +50,7 @@ export function SimpleNavbar({ chartUrl, userEmail }) {
               className="w-full h-full border-0"
             ></iframe>
           ) : (
-            <div className="w-full h-full bg-gray-400"></div>
+            <div className="w-full h-full bg-gray-400 text-xl" >Você não possui nenhum cliente atribuído a sua conta.</div>
           )}
         </div>
       </div>
