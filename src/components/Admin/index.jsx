@@ -3,6 +3,7 @@ import { AdminSidebar } from "./Sidebar";
 import {AdminDashboard} from "../AdminDashboard";
 import { Register } from '../auth/register';
 import { Company } from '../Company';
+import { UsersMgmt } from './UsersMgmt';
 
 export function Admin() {
     const [selectedComponent, setSelectedComponent] = useState('permissions');
@@ -10,7 +11,7 @@ export function Admin() {
     const renderComponent = () => {
         switch (selectedComponent) {
             case 'permissions':
-                return <Register />;
+                return <UsersMgmt />;
             case 'dashboards':
                 return <AdminDashboard />;
             case 'clients':
