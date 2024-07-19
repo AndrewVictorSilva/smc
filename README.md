@@ -7,7 +7,7 @@ Este projeto é uma aplicação web desenvolvida com ViteJS, utilizando Firebase
 A primeira versão deste projeto tem o objetivo de agregar relatórios do Power BI de vários times, centralizando as informações em um único local para fácil acesso e análise.
 
 ### Acesse a aplicação no link abaixo:
-[Customer Governance Portal](https://www.mygovernance.com.br)
+[Customer Governance Portal](https://mygovernance.com.br)
 
 ## Objetivos do Projeto
 
