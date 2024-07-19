@@ -93,7 +93,7 @@ export function ProfileMenu() {
             />
           </svg>
           <a
-          href="https://github.com/AndrewVictorSilva/smc/wiki/Customer-Governance-Portal"
+          href="https://github.com/AndrewVictorSilva/smc/wiki"
           target="_blank"
           >
             <Typography variant="small" className="font-medium">
