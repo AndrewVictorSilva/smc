@@ -51,6 +51,10 @@ A primeira versão deste projeto tem o objetivo de agregar relatórios do Power 
    - A equipe de dados cria e publica relatórios no Power BI.
    - Os links desses relatórios são embutidos na aplicação web, onde os clientes podem acessá-los diretamente.
 
+## Arquitetura Simplificada
+
+![Desenho da arquitetura do projeto](/public/arch.png)
+
 ## Acesso Baseado em Funções (Role-Based Access Control)
 
 A aplicação implementa controle de acesso baseado em funções para garantir que diferentes usuários tenham permissões adequadas:
