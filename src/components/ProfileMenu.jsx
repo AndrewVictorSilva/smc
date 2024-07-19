@@ -92,9 +92,14 @@ export function ProfileMenu() {
               fill="#90A4AE"
             />
           </svg>
-          <Typography variant="small" className="font-medium">
-            Sobre
-          </Typography>
+          <a
+          href="https://github.com/AndrewVictorSilva/smc/wiki/Customer-Governance-Portal"
+          target="_blank"
+          >
+            <Typography variant="small" className="font-medium">
+              Sobre
+            </Typography>
+          </a>
         </MenuItem>
 
 
