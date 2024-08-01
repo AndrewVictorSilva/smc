@@ -16,6 +16,8 @@ export function Admin() {
                 return <AdminDashboard />;
             case 'clients':
                 return <Company />;
+            case 'register':
+                return <Register />;
             default:
                 return <div>Select an option from the sidebar</div>;
         }

@@ -3,7 +3,7 @@ import {
   MagnifyingGlassIcon,
   ChevronUpDownIcon
 } from "@heroicons/react/24/outline";
-import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+import { PencilIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   CardHeader,
@@ -21,7 +21,7 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 import { SubscriptionPopover } from "./SubscriptionPopover";
-
+import { UserModal } from './UserModal'; // Import the UserModal component
 import { getAllUsersInfo } from "../../firebase/roles"; // Adjust the import based on your file structure
 
 const TABS = [
@@ -34,12 +34,13 @@ const TABLE_HEAD = ["Email", "Cliente", "Função"];
 
 export function UsersMgmt() {
   const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null); // State for selected user
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
 
   useEffect(() => {
     const fetchUsersInfo = async () => {
       try {
         const usersData = await getAllUsersInfo();
-        console.log("Users Data:", usersData); // Logging fetched data
         setUsers(usersData);
       } catch (error) {
         console.error("Error fetching user info:", error);
@@ -48,6 +49,16 @@ export function UsersMgmt() {
 
     fetchUsersInfo();
   }, []);
+
+  const openModal = (user) => {
+    setSelectedUser(user);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedUser(null);
+  };
 
   return (
     <Card className="h-full w-full">
@@ -173,7 +184,7 @@ export function UsersMgmt() {
                     </td>
                     <td className={classes}>
                       <Tooltip content="Edit User">
-                        <IconButton variant="text">
+                        <IconButton variant="text" onClick={() => openModal({ email, company, role })}>
                           <PencilIcon className="h-4 w-4" />
                         </IconButton>
                       </Tooltip>
@@ -204,6 +215,7 @@ export function UsersMgmt() {
           </Button>
         </div>
       </CardFooter>
+      <UserModal isOpen={isModalOpen} user={selectedUser} onClose={closeModal} /> {/* Render UserModal */}
     </Card>
   );
 }
