@@ -4,7 +4,7 @@ export interface GridItemProps {
   title: string;
   customer: string;
   src: string;
-  allowFullScreen: boolean;
+  allowFullScreen: string;
   width: string;
   height: string;
 }
@@ -16,9 +16,9 @@ export function GridItem(props: GridItemProps) {
       <iframe
         title={props.title}
         src={props.src}
-        width='1200'
+        width='1300'
         height='600'
-        allowFullScreen={true}
+        /* allowFullScreen={true} */
       ></iframe>
     </div>
   );

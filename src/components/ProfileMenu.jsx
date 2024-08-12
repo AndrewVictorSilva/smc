@@ -36,14 +36,22 @@ export function ProfileMenu() {
     return <div>Loading...</div>; // or some other loading indicator
   }
 
+  const extractNameFromEmail = (email) => {
+    const [firstPart] = email.split('@');
+    const [firstName, lastName] = firstPart.split('.');
+    return { firstName, lastName };
+  };
+
+  const { firstName, lastName } = extractNameFromEmail(currentUser.email);
+  const avatarUrl = `https://avatar.iran.liara.run/username?username=${encodeURIComponent(firstName + " " + lastName)}`;
+
   return (
     <Menu>
       <MenuHandler>
         <Avatar
           variant="circular"
-          alt="tania andrew"
           className="cursor-pointer"
-          src="https://avatars.githubusercontent.com/u/54148319?v=4"
+          src={avatarUrl}
         />
       </MenuHandler>
       <MenuList>
