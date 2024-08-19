@@ -11,6 +11,8 @@ import {
 } from "firebase/auth";
 import { doc, setDoc, updateDoc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 
+import { getUserByEmail } from './roles';
+
 export const doCreateUserWithEmailAndPassword = async (email, password, role, company) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -111,4 +113,17 @@ export const updateUserByEmail = async (email, updatedFields) => {
   } else {
     throw new Error(`No document found for email: ${email}`);
   }
+};
+
+export const getAuthUserByEmail = async (email) => {
+  // Fetch user data from Firestore using the existing getUserByEmail function
+  const user = await getUserByEmail(email);
+
+  if (!user) {
+    throw new Error(`No user found with email: ${email}`);
+  }
+
+  // Use the user ID to return the auth user
+  const userAuth = await auth.getUser(user.uid);
+  return userAuth;
 };

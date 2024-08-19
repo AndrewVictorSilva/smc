@@ -45,12 +45,6 @@ export function AdminSidebar({ setSelectedComponent }) {
                     </ListItemPrefix>
                     Gerenciar Clientes
                 </ListItem>
-                <ListItem onClick={() => setSelectedComponent('register')}>
-                    <ListItemPrefix>
-                        <UserGroupIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Registro Temporário
-                </ListItem>
             </List>
         </Card>
     );
